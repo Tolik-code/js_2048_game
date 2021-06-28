@@ -1,4 +1,262 @@
-parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"KIzB":[function(require,module,exports) {
-"use strict";function t(t){return o(t)||n(t)||e(t)||r()}function r(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function e(t,r){if(t){if("string"==typeof t)return c(t,r);var e=Object.prototype.toString.call(t).slice(8,-1);return"Object"===e&&t.constructor&&(e=t.constructor.name),"Map"===e||"Set"===e?Array.from(t):"Arguments"===e||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)?c(t,r):void 0}}function n(t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(t))return Array.from(t)}function o(t){if(Array.isArray(t))return c(t)}function c(t,r){(null==r||r>t.length)&&(r=t.length);for(var e=0,n=new Array(r);e<r;e++)n[e]=t[e];return n}var a=document.querySelector(".container"),i=a.querySelectorAll("tbody tr"),u=a.querySelector(".start"),f=a.querySelector(".message-container"),l=a.querySelector(".game-score"),s=i[0].children.length,d=[],h=function(t,r){for(var e=0;e<r;e++){t.push([]);for(var n=0;n<s;n++){t[e].push([]);for(var o=0;o<s;o++)t[e][n].push("")}}};h(d,2);var v=function(){for(var r=function(r){t(a.querySelectorAll("tr :nth-child(".concat(r,")"))).map(function(t,e){t.textContent=d[1][r-1][e],t.className="field-cell field-cell--".concat(t.textContent)})},e=1;e<=s;e++)r(e)},g=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:s*s;return Math.ceil(Math.random()*(r-t)+t)},w=function(){for(var t=0,r=0;r<d[1].length;r++)for(var e=0;e<d[1][r].length;e++)d[1][r][e]||t++;return t},m=function(t){for(var r=0;r<t;r++){var e=w();if(e<1)return;for(var n=g(0,e),o=g(0,10)>9?4:2,c=0,a=0;a<d[1].length;a++)for(var i=0;i<d[1][a].length;i++)d[1][a][i]||++c===n&&(d[1][a][i]=o,d[0][i][a]=o);v()}},y=function(t){a.querySelector(".".concat(t)).classList.remove("hidden")},A=function(){u.textContent="Restart",u.classList.add("restart"),l.textContent=0,S(),m(2),t(f.children).map(function(t){t.classList.add("hidden")})};u.addEventListener("click",function(){return A()});var p=function(t,r){var e=!1;return t.some(function(t,e){return t!==r[e]})&&(e=!0),e},b=function(){if(w()>0)return!0;for(var r=1;r<=s;r++){var e=t(d[0][r-1]),n=t(d[1][r-1]);if(q(e),q(n),p(e,d[0][r-1])||p(n,d[1][r-1]))return!0}y("message-lose")},S=function(){for(var t=0;t<d[1].length;t++)for(var r=0;r<d[1][t].length;r++)d[1][t][r]="",d[0][r][t]="";v()};function L(r,e,n){for(var o=t(r).filter(function(t){return t}),c=0;c<r.length;c++)c>=o.length?r[c]="":r[c]=o[c];"toRight"!==e&&"toDown"!==e||r.reverse();for(var a=function(t){d[n][t].map(function(r,e){d[+!n][e][t]=r})},i=0;i<4;i++)a(i);v()}function q(t){for(var r=1;r<t.length;r++)t[r-1]===t[r]&&t[r]&&(t[r-1]=2*+t[r-1],t[r]="",l.textContent=+l.textContent+ +t[r-1],"2048"===t[r-1]&&y("message-win"))}window.addEventListener("touchstart",function(t){var r=t.targetTouches[0].clientY,e=t.targetTouches[0].clientX;window.ontouchend=function(t){var n=t.changedTouches[0].clientX,o=t.changedTouches[0].clientY;o-r>130&&C("ArrowDown"),r-o>130&&C("ArrowUp"),e-n>130&&C("ArrowLeft"),n-e>130&&C("ArrowRight")}});var C=function(r){for(var e,n=!1,o=function(r,o){var c=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";e=t(r),L(r,c,o),q(r),L(r,c,o),p(e,r)&&(n=!0)},c=1;c<=s;c++)switch(r){case"ArrowUp":o(d[1][c-1],1);break;case"ArrowDown":o(d[1][c-1],1,"toDown");break;case"ArrowLeft":o(d[0][c-1],0,"toLeft");break;case"ArrowRight":o(d[0][c-1],0,"toRight")}b(),n&&m(1)};window.addEventListener("keydown",function(t){"ArrowUp"!==t.code&&"ArrowDown"!==t.code&&"ArrowLeft"!==t.code&&"ArrowRight"!==t.code||C(t.code)});
-},{}]},{},["KIzB"], null)
-//# sourceMappingURL=main.40859243.js.map
+'use strict';
+
+const root = document.querySelector('.container');
+
+const allRowsField = root.querySelectorAll('tbody tr');
+const btnStart = root.querySelector('.start');
+const messageFooter = root.querySelector('.message-container');
+const gameScore = root.querySelector('.game-score');
+const widthField = allRowsField[0].children.length;
+
+const field = [];
+
+const createarrField = (arr, column) => {
+  for (let m = 0; m < column; m++) {
+    arr.push([]);
+
+    for (let i = 0; i < widthField; i++) {
+      arr[m].push([]);
+
+      for (let count = 0; count < widthField; count++) {
+        arr[m][i].push('');
+      }
+    }
+  }
+};
+
+createarrField(field, 2);
+
+const updateHtml = () => {
+  for (let i = 1; i <= widthField; i++) {
+    [...root.querySelectorAll(`tr :nth-child(${i})`)].map((cell, index) => {
+      cell.textContent = field[1][i - 1][index];
+      cell.className = `field-cell field-cell--${cell.textContent}`;
+    });
+  }
+};
+
+const randomNumber = (min = 0, max = (widthField * widthField)) => {
+  return Math.ceil(Math.random() * (max - min) + min);
+};
+
+const cauntFreeCell = () => {
+  let count = 0;
+
+  for (let i = 0; i < field[1].length; i++) {
+    for (let y = 0; y < field[1][i].length; y++) {
+      if (!field[1][i][y]) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+};
+
+const changeCellValue = (numberChange) => {
+  for (let i = 0; i < numberChange; i++) {
+    const freeCell = cauntFreeCell();
+
+    if (freeCell < 1) {
+      return;
+    }
+
+    const random = randomNumber(0, freeCell);
+
+    const valueCell = randomNumber(0, 10) > 9 ? 4 : 2;
+
+    let count = 0;
+
+    for (let k = 0; k < field[1].length; k++) {
+      for (let y = 0; y < field[1][k].length; y++) {
+        if (!field[1][k][y]) {
+          count++;
+
+          if (count === random) {
+            field[1][k][y] = valueCell;
+            field[0][y][k] = valueCell;
+          }
+        }
+      }
+    }
+    updateHtml();
+  }
+};
+
+const changeHidden = (messegeClass) => {
+  root.querySelector(`.${messegeClass}`).classList.remove('hidden');
+};
+
+const startGame = () => {
+  btnStart.textContent = 'Restart';
+  btnStart.classList.add('restart');
+  gameScore.textContent = 0;
+
+  removeField();
+  changeCellValue(2);
+
+  [...messageFooter.children].map(message => {
+    message.classList.add('hidden');
+  });
+};
+
+btnStart.addEventListener('click', () => startGame());
+
+const validTwoRows = (arr, arrNext) => {
+  let valid = false;
+
+  if (arr.some((num, index) => num !== arrNext[index])) {
+    valid = true;
+  }
+
+  return valid;
+};
+
+const possibilityMove = () => {
+  if (cauntFreeCell() > 0) {
+    return true;
+  }
+
+  for (let i = 1; i <= widthField; i++) {
+    const newArrMergeX = [...field[0][i - 1]];
+    const newArrMergeY = [...field[1][i - 1]];
+
+    merge(newArrMergeX);
+    merge(newArrMergeY);
+
+    if (validTwoRows(newArrMergeX, field[0][i - 1]) ||
+      validTwoRows(newArrMergeY, field[1][i - 1])) {
+      return true;
+    }
+  }
+  changeHidden('message-lose');
+};
+
+const removeField = () => {
+  for (let i = 0; i < field[1].length; i++) {
+    for (let y = 0; y < field[1][i].length; y++) {
+      field[1][i][y] = '';
+      field[0][y][i] = '';
+    }
+  }
+
+  updateHtml();
+};
+
+function move(arrCell, direction, column) {
+  const arrNotFreeCell = [...arrCell].filter((cell) => {
+    return cell;
+  });
+
+  for (let i = 0; i < arrCell.length; i++) {
+    if (i >= arrNotFreeCell.length) {
+      arrCell[i] = '';
+      continue;
+    }
+
+    arrCell[i] = arrNotFreeCell[i];
+  }
+
+  if (direction === 'toRight' || direction === 'toDown') {
+    arrCell.reverse();
+  }
+
+  for (let i = 0; i < 4; i++) {
+    field[column][i].map((num, index) => {
+      field[+!column][index][i] = num;
+    });
+  }
+  updateHtml();
+};
+
+function merge(arrCell) {
+  for (let i = 1; i < arrCell.length; i++) {
+    if (arrCell[i - 1] === arrCell[i] && arrCell[i]) {
+      arrCell[i - 1] = +arrCell[i - 1] * 2;
+      arrCell[i] = '';
+
+      gameScore.textContent = +gameScore.textContent + (+arrCell[i - 1]);
+
+      if (arrCell[i - 1] === '2048') {
+        changeHidden('message-win');
+      }
+    }
+  }
+};
+
+window.addEventListener('touchstart', (e) => {
+  let startY = e.targetTouches['0'].clientY;
+  let startX = e.targetTouches['0'].clientX;
+
+  window.ontouchend =  (event) => {
+    let endX = event.changedTouches['0'].clientX;
+    let endY = event.changedTouches['0'].clientY;
+
+    if (endY - startY > 130) {
+      oneSteep('ArrowDown')
+    }
+    
+    if (startY - endY > 130) {
+      oneSteep('ArrowUp')
+    }
+
+    if (startX - endX > 130) {
+      oneSteep('ArrowLeft')
+    }
+
+    if (endX - startX > 130) {
+      oneSteep('ArrowRight')
+    }
+  };
+})
+
+
+const oneSteep = (nameEvent) => {
+
+  let validMove = false;
+  let newArr;
+
+  const startFuncMove = (row, columnField, direction = '') => {
+    newArr = [...row];
+    move(row, direction, columnField);
+    merge(row);
+    move(row, direction, columnField);
+
+    if (validTwoRows(newArr, row)) {
+      validMove = true;
+    };
+  };
+
+  for (let i = 1; i <= widthField; i++) {
+    switch (nameEvent) {
+      case 'ArrowUp':
+        startFuncMove(field[1][i - 1], 1);
+        break;
+
+      case 'ArrowDown':
+        startFuncMove(field[1][i - 1], 1, 'toDown');
+        break;
+
+      case 'ArrowLeft':
+        startFuncMove(field[0][i - 1], 0, 'toLeft');
+        break;
+
+      case 'ArrowRight':
+        startFuncMove(field[0][i - 1], 0, 'toRight');
+        break;
+    }
+  }
+
+  possibilityMove();
+
+  if (validMove) {
+    changeCellValue(1);
+  }
+};
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'ArrowUp' || e.code === 'ArrowDown' ||
+    e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
+    oneSteep(e.code)
+  }
+});
